@@ -143,6 +143,7 @@ class SpeedFood
 
 	void Draw(){
 		DrawTexture(texture,offset + position.x * cellSize,offset + position.y * cellSize, WHITE);
+		void SpeedUpdate
 
 	}
 
@@ -160,13 +161,13 @@ class SpeedFood
 		Vector2 position = GenerateRandomCell();
 		while(ElementInDeque(position, snakeBody))
 		{
-				eventTriggered(0.005);
 			position = GenerateRandomCell();	
 		}
 		return position;
 	}
 }; 
 
+		void SpeedUpdate
 
 class Game
 {
@@ -178,8 +179,6 @@ class Game
 		int score = 0;
 		Sound eatSound;
 		Sound wallSound;
-		float speedTime = 0.2;
-
 
 		Game()
 		{
@@ -187,6 +186,7 @@ class Game
 			eatSound = LoadSound("music/mixkit-bubbly-achievement-tone-3193.wav");
 			wallSound = LoadSound("music/mixkit-long-game-over-notification-276.wav");
 		}
+		void SpeedUpdate
 
 		~Game()
 		{
@@ -216,7 +216,6 @@ class Game
 		{
 			if(Vector2Equals(snake.body[0], food.position))
 			{
-				speedTime = 0.2;
 				food.position = food.GenerateRandomPos(snake.body);
 				snake.addSegment = true;
 				score ++;
@@ -227,7 +226,6 @@ class Game
 		{
 			if(Vector2Equals(snake.body[0], speed.position))
 			{
-				speedTime = 0.05;
 				speed.position = speed.GenerateRandomPos(snake.body);
 				score ++;
 				PlaySound(eatSound);
@@ -273,11 +271,13 @@ int main(){
 	InitWindow(2*offset + cellSize*cellCount, 2*offset + cellSize*cellCount, "Retro Snake");
 	cout << "Starting the game..." << endl;
 	SetTargetFPS(60);
+
 	Game game = Game();
 
 	while(WindowShouldClose() == false){
 		BeginDrawing();
-		if(eventTriggered(game.speedTime))
+		
+		if(eventTriggered(0.2))
 		{
 			game.Update();
 		}
